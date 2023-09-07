@@ -1,0 +1,13 @@
+version: '3'
+services:
+  project-delivery-automator-service:
+    image: $REGISTRY$NOMBRE_APLICACION:$VERSION
+    container_name: $NOMBRE_APLICACION
+    working_dir: /app
+    command: cron -f
+    ports:
+      - "$PUERTO_HOST:$PUERTO_CONTENEDOR"
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
